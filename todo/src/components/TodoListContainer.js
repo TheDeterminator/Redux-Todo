@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
-import { addTodo, toggleTodo } from '../actions';
+import { addTodo, toggleTodo, deleteTodo } from '../actions';
 
 class TodoListContainer extends Component {
   constructor() {
@@ -17,8 +17,8 @@ class TodoListContainer extends Component {
   }
 
   addTodoHandler = (e) => {
+    e.preventDefault();
     const text = this.state.todo;
-    console.log(text);
     const newTodo = {
       text,
       completed: false,
@@ -29,25 +29,29 @@ class TodoListContainer extends Component {
   }
 
   toggleComplete = (todoId) => {
-    console.log("is called")
     this.props.toggleTodo(todoId);
+  }
+
+  deleteTodo = (todoId) => {
+    this.props.deleteTodo(todoId);
   }
 
 
   render() {
-    console.log("Props in TodoList:", this.props);
     return (
       <div className="TodoList-Container">
         <ul>{this.props.todos.map(todo => {
-          return <li onClick={() => this.toggleComplete(todo.id)}
+          return <div><li onClick={() => this.toggleComplete(todo.id)}
           style={todo.completed ? {color: 'red', textDecoration: 'line-through'}: null}
           key={todo.id}>{todo.text}</li>
+          <button type="button" onClick={() => this.deleteTodo(todo.id)}>X</button>
+          </div>
         })}</ul>
-        <form>
+        <form onSubmit={this.addTodoHandler}>
           <input type="text" name="todo" placeholder="todo..."
           onChange={this.handleChange}
           value={this.state.todo}/>
-          <button type="button" onClick={this.addTodoHandler}>Submit</button>
+          <button type="Submit">Submit</button>
         </form>
       </div>
     );
@@ -55,10 +59,9 @@ class TodoListContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("State in Redux Store:", state);
   return {
     todos: state.todos
   };
 };
 
-export default connect(mapStateToProps, { addTodo, toggleTodo })(TodoListContainer);
+export default connect(mapStateToProps, { addTodo, toggleTodo, deleteTodo })(TodoListContainer);
