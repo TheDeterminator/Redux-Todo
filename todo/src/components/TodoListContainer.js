@@ -36,6 +36,7 @@ class TodoListContainer extends Component {
   };
 
   render() {
+		console.log(this.props)
     return (
       <div className="TodoList-Container">
         <ul>
