@@ -1,11 +1,6 @@
 import {ADD_TODO, TOGGLE_TODO, DELETE_TODO} from '../actions';
 
-const todos = [
-  {text: 'Become CEO of Google', completed: false, id: 0},
-  {text: 'Absorb OpenAI', completed: false, id: 1},
-  {text: 'Take over the world', completed: false, id: 2},
-];
-const todoApp = (state = todos, action) => {
+const todoApp = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
       return [...state, action.payload];
@@ -15,7 +10,6 @@ const todoApp = (state = todos, action) => {
           ? {...todo, completed: !todo.completed}
           : todo;
       });
-
     case DELETE_TODO:
       return state.filter(todo => {
         return todo.id !== action.payload;
