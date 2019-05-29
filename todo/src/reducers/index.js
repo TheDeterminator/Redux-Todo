@@ -11,9 +11,9 @@ const todoApp = (state = todos, action) => {
       return [...state, action.payload];
     case TOGGLE_TODO:
       return state.map(todo => {
-        todo.id === action.payload
+        return (todo.id === action.payload
           ? {...todo, completed: !todo.completed}
-          : todo;
+          : todo);
       });
 
     case DELETE_TODO:
