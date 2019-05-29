@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 import {addTodo, toggleTodo, deleteTodo} from '../actions';
 
 class TodoListContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       todo: '',
+      nextTodoId: this.props.todos.length,
     };
   }
 
@@ -21,10 +22,13 @@ class TodoListContainer extends Component {
     const newTodo = {
       text,
       completed: false,
-      id: this.props.todos ? this.props.todos.length + text : 0 + text,
+      id: this.state.nextTodoId,
     };
     this.props.addTodo(newTodo);
-    this.setState({todo: ''});
+    this.setState(prevState => ({
+      todo: '',
+      nextTodoId: ++prevState.nextTodoId,
+    }));
   };
 
   toggleComplete = todoId => {
