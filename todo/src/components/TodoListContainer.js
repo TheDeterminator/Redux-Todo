@@ -36,27 +36,24 @@ class TodoListContainer extends Component {
   };
 
   render() {
-		console.log(this.props)
     return (
       <div className="TodoList-Container">
         <ul>
           {this.props.todos.map(todo => {
             return (
-              <div>
-                <li
-                  onClick={() => this.toggleComplete(todo.id)}
-                  style={
-                    todo.completed
-                      ? {color: 'red', textDecoration: 'line-through'}
-                      : null
-                  }
-                  key={todo.id}>
-                  {todo.text}
-                </li>
+              <li
+                onClick={() => this.toggleComplete(todo.id)}
+                style={
+                  todo.completed
+                    ? {color: 'red', textDecoration: 'line-through'}
+                    : null
+                }
+                key={todo.id}>
+                {todo.text}
                 <button type="button" onClick={() => this.deleteTodo(todo.id)}>
                   X
                 </button>
-              </div>
+              </li>
             );
           })}
         </ul>
@@ -77,7 +74,7 @@ class TodoListContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos,
+    todos: state,
   };
 };
 
