@@ -3,7 +3,7 @@ import {ADD_TODO, TOGGLE_TODO, DELETE_TODO} from '../actions';
 const todoApp = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
-      return [...state, action.payload];
+      return [...state, {id: state.length + action.id, completed: false, text: action.payload}];
     case TOGGLE_TODO:
       return state.map(todo => {
         return todo.id === action.payload

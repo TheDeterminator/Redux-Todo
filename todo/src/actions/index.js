@@ -2,9 +2,12 @@ export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 
-export const addTodo = todo => ({
+let nextTodoId = 0;
+
+export const addTodo = text => ({
   type: ADD_TODO,
-  payload: todo,
+  id: nextTodoId++,
+  payload: text,
 });
 
 export const toggleTodo = id => ({
