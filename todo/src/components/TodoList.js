@@ -4,13 +4,18 @@ import '../App.css';
 import Todo from './Todo';
 
 const Todolist = ({todos, toggleTodo, deleteTodo}) => (
-      <div className="TodoList-Container">
-        <ul>
-          {todos.map(todo => (
-            <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} deleteTodo={() => deleteTodo(todo.id)} />  
-          ))}
-        </ul>
-      </div>
-)
+  <div className="TodoList-Container">
+    <ul>
+      {todos.map(todo => (
+        <Todo
+          key={todo.id}
+          {...todo}
+          onClick={() => toggleTodo(todo.id)}
+          deleteTodo={() => deleteTodo(todo.id)}
+        />
+      ))}
+    </ul>
+  </div>
+);
 
-export default Todolist
+export default Todolist;
