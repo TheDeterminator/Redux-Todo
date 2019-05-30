@@ -25,4 +25,4 @@ const AddTodo =({dispatch}) => {
     )
 }
 
-export default connect()(AddTodo); //Why do we use connect here?
+export default connect()(AddTodo); // We use connect() here to get access to the dispatch method
