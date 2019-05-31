@@ -18,4 +18,4 @@ const Todo = ({onClick, completed, text, deleteTodo}) => {
   );
 };
 
-export default Todo;
+export default Todo
